@@ -1,0 +1,3 @@
+[submodule "humps"]
+      path = humps
+      url = git://github.com/domchristie/humps.git
