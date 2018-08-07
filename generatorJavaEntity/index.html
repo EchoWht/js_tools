@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #scale,#scaleLabel{
+            display: none;
+        }
+        input,button,select{
+            height: 35px;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
-<input type="text" id="filedName" value="userAge">
-<input type="text" id="filedComment" value="年龄">
-<select name="" id="filedType">
+<label for="filedName">字段：</label><input type="text" id="filedName" value="userAge">
+<label for="filedComment">字段注释：</label><input type="text" id="filedComment" value="年龄">
+<label for="filedType">字段类型：</label><select name="" id="filedType">
     <option value="java.lang.String" selected>java.lang.String</option>
     <option value="java.lang.Integer">java.lang.Integer</option>
     <option value="java.math.BigDecimal">java.math.BigDecimal</option>
     <option value="java.util.Date">java.util.Date</option>
 </select>
-<input type="text" id="scale" value="20">
-<input type="text" id="filedLength" value="20">
+<label for="filedLength">字段长度：</label><input type="text" id="filedLength" value="20">
+<label for="scale" id="scaleLabel">精度：</label><input type="text" id="scale" value="10">
 <button onclick="generator()">生成</button>
 <div id="template" style="display: none">
     /**filedComment*/
@@ -40,7 +49,17 @@
 <script src="../jquery.min.js"></script>
 <script src="../humps/humps.js"></script>
 <script>
-    generator();
+    $(document).ready(function(){
+        $("#filedType").change(function () {
+            let filedType=$(this).val()
+            if (filedType==="java.math.BigDecimal") {
+                $("#scale,#scale").show();
+            }else {
+                $("#scale,#scale").hide();
+            }
+        })
+        generator();
+    })
     function generator() {
         var template=$("#template").html()
         var filedName=$("#filedName").val();
@@ -61,5 +80,6 @@
         code = code.replace(/UFiledName/g, filedName.substring(0,1).toUpperCase()+filedName.substring(1));
         $("#result").html(code);
     }
+
 </script>
 </html>
