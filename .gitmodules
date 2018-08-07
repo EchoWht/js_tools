@@ -1,3 +1,6 @@
 [submodule "humps"]
       path = humps
       url = git://github.com/domchristie/humps.git
+[submodule "clipboard.js"]
+	path = clipboard.js
+	url = git://github.com/zenorocha/clipboard.js.git
