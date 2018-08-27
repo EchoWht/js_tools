@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../assets/css/main.css">
     <style>
         #scale,#scaleLabel{
             display: none;
@@ -17,7 +18,7 @@
 <label for="filedName">字段：</label><input type="text" id="filedName" value="userAge">
 <label for="filedComment">字段注释：</label><input type="text" id="filedComment" value="年龄">
 <label for="pageName">PageName：</label><input type="text" id="pageName" value="pmGjybtzPage">
-<button onclick="generator()">生成</button>
+<button onclick="generator()" class="zyw-btn">生成</button>
 <code id="template" style="display: none">
                 &lt;td align=&quot;right&quot;&gt;
                     &lt;label class=&quot;Validform_label&quot;&gt;
@@ -33,7 +34,7 @@
 <code id="templateInputHidden" style="display: none">
                 &lt;input id=&quot;filedName&quot; name=&quot;filedName&quot; type=&quot;hidden&quot; value=&quot;${pageName.filedName }&quot;&gt;
 </code>
-<textarea name="" id="result" style="width: 100%;height: 400px"></textarea>
+<textarea name="" id="result" style="height: 400px" class="zyw-block"></textarea>
 <!--<textarea name="" id="resultInputHidden" style="width: 100%;height: 400px"></textarea>-->
 </body>
 <script src="../jquery.min.js"></script>
