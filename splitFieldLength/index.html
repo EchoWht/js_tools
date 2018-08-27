@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+<body>
+<textarea name="" id="fieldType" style="width:100px;height: 400px">varchar2
+varchar2</textarea>
+<textarea name="" id="fieldLength" style="width: 100px;height: 400px">1000
+20</textarea>
+<table width="29%" border="1px" cellspacing="0" id="result" style="display: none"></table>
+<button onclick="generator()">ok</button>
+</body>
+<script src="../jquery.min.js"></script>
+<script src="../tools.js"></script>
+<script>
+    function generator() {
+        var  fieldType=$("#fieldType").val();
+        var fieldLength=$("#fieldLength").val();
+        var html="";
+        fieldType= textValToArr(fieldType);
+        fieldLength= textValToArr(fieldLength);
+        console.log(fieldType)
+        console.log(fieldLength)
+        for (let i=0;i<fieldLength.length;i++){
+            let type= fieldType[i].toUpperCase();
+            let length=fieldLength[i]
+            if (type=="DATE"){
+
+            }else{
+                fieldType[i]=fieldType[i]+"("+parseInt(fieldLength[i])+")"
+            }
+            html+="<tr><td>"+ fieldType[i]+"</td></tr>"
+        }
+        console.table(fieldType)
+        $("#result").html(html);
+        $("#result").show();
+        selectElement("result");
+    }
+</script>
+</html>
