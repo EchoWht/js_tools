@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<textarea name="" id="fieldKey" style="width:100px;height: 400px">test1
+test2</textarea>
+<textarea name="" id="fieldValue" style="width: 100px;height: 400px">测试1
+测试2</textarea>
+<textarea name="" id="result" style="width: 300px;height: 400px">
+</textarea>
+<hr>
+<button onclick="generator()">生成json</button>
+<div id="template" style="display: none">
+    "key":"value",</div>
+
+<script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+<script src="tools.js"></script>
+<script>
+
+    function generator() {
+        var  fieldKey=$("#fieldKey").val();
+        var fieldValue=$("#fieldValue").val();
+        var template=$("#template").html()
+        var html="";
+        fieldKey= textValToArr(fieldKey);
+        fieldValue= textValToArr(fieldValue);
+        console.log(fieldValue)
+        for (let i=0;i<fieldValue.length;i++){
+            let key= fieldKey[i];
+            let value=fieldValue[i];
+            var code = template.replace(new RegExp("key",'g'), key);
+            code = code.replace(/value/g, value);
+            html+=code
+            console.log(i)
+
+            if (i+1===fieldValue.length) {
+            html=html.substr(0, html.length - 1);
+            }
+        }
+
+        html="{"+html+"\n}"
+        console.table(fieldKey)
+        $("#result").val(html);
+        selectElement("result");
+    }
+    $(document).ready(function(){
+        generator()
+    });
+</script>
+</body>
+</html>
